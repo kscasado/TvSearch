@@ -1,0 +1,63 @@
+<div class="search-header">
+  <div class="container">
+
+    <div class="row">
+
+
+        <form>
+          <h2 class="v-center">Search for your favorite TV Show</h2>
+
+          <div class="input-group">
+            <input type="text" class="form-control input-md"ng-model="tvShow"/>
+            <span class="input-group-btn">
+            	<button
+            		type="submit"
+
+            		class="btn btn-md btn-warning pull-right"ng-click=getShows()>
+            		Search
+            	</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+        <div class="row"ng-repeat="show in showList" ng-model="show" >
+          <div class="col-xs-12">
+          <div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title">
+                            {{show.show.name}}
+
+                        </div>
+					</div>
+					<div class="panel-body">
+
+
+              <img class ="class-xs-5 pull-left" src={{show.show.image.medium}} >
+
+
+          <div class ="col-xs-6">
+
+
+            <ul class="list-inline">
+              <li ng-repeat="genre in show.show.genres track by $index">{{genre}} | </li>
+
+
+            </ul>
+
+            <p ng-bind-html="show.show.summary" ></p>
+            <button type="submit" class ="btn btn-md btn-warning pull-right"
+                ng-click=getShowDetails(show.show.id)>
+            Details</button>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
