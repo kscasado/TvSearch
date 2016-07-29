@@ -1,4 +1,5 @@
-angular.module('app', ['ngRoute', 'ngResource', 'search.controller', 'search.service','show.controller','show.service'])
+angular.module('app', ['ngRoute', 'ngResource', 'search.controller', 'search.service',
+'login.controller', 'login.service', 'show.controller', 'show.service'])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
 
@@ -24,6 +25,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'search.controller', 'search.ser
 
           }
         })
+        .when('/login',{
+          templateUrl:'views/login.html',
+          controller:'LoginController'
+
+        })
+
         .otherwise({
           redirectTo: '/'
         });

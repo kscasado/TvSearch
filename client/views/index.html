@@ -19,9 +19,18 @@
 		<script src="js/search/search.service.js"></script>
 		<script src="js/show/show.controller.js"></script>
 		<script src="js/show/show.service.js"></script>
+		<script src="js/login/login.controller.js"></script>
+		<script src="js/login/login.service.js"></script>
 	</head>
 	<body ng-app="app">
-
+		<nav class="navbar navbar-default pull-right" ng-controller="LoginController">
+			<!-- <ul class ="nav navbar-nav">
+				Check for if a user logged in
+				<li ng-show="isLoggedIn()"><a> {{currentUser()}}</a></li>
+				<li ng-hide="isLoggedIn()"><a href="/login">Log In </a></li>
+				<li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+			</ul> -->
+		</nav>
 		<nav class="navbar navbar-inverse navbar-static-top">
 			<div class="navbar-header">
 				<h4 class="navbar-brand" href="#">TvSearch App</a>
