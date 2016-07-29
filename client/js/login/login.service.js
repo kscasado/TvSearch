@@ -1,8 +1,9 @@
+
+/*
 angular.module('login.service',[])
-        .factory('LoginService', function($resource){
-          return  $resource('/api/:tvshow',{},{
-            get: {
-          method: 'GET',
-          isArray:true}
+        .factory('LoginService', function($resource,$http){
+          return  $http.post('/api/login',user).success(function(data){
+            console.log("Login success");
       });
-        });
+    });
+*/

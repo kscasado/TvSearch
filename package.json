@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.3",
+    "mongoose": "^4.5.7",
     "superagent": "^1.4.0"
   }
 }

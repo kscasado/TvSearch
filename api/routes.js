@@ -1,6 +1,7 @@
 var superagent = require('superagent');
 var config = require('../config.json');
-
+var mongoose=require('mongoose');
+var User=mongoose.model('User');
 module.exports = function(app){
 
     app.get('/api/:tvshow',function(req,res){
@@ -22,7 +23,9 @@ module.exports = function(app){
               });
     });
     app.get('/api/shows/:showID',function(req,res){
-      console.log('http://api.tvmaze.com/shows/'+req.params.showID+'\?embed=cast');
+
+
+      //console.log('http://api.tvmaze.com/shows/'+req.params.showID+'\?embed=cast');
       superagent
         .get('http://api.tvmaze.com/shows/'+req.params.showID+'\?embed=cast')
         .query({json:true})
@@ -35,9 +38,22 @@ module.exports = function(app){
             res.json(response.body);
           }
         });
-        
+
 
     });
+    app.post('/api/login', function(req,res,next){
+      if(!req.body.username || !req.body.password){
+        return res.status(400).json({message: 'Please fill out all fields'});
+      }
+    app.post('api/:user/addShow',function(req,res,next){
+      var id = req.showId;
+
+    });
+
+    });
+
+
+
 
 
 

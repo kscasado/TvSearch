@@ -1,13 +1,13 @@
 angular.module('login.controller',[])
-      .controller('LoginController',function($scope, LoginService,$sce,$location){
+      .controller('LoginController',function($scope, $sce,$location){
         $scope.sce = $sce;
         $scope.showList=null;
         $scope.isLoggedIn=false;
         $scope.login=function(user){
 
-          if( LoginService.query({ login: $scope.user, pw:$scope.pw})){
-
-          }
+          return  $http.post('/api/login',user).success(function(data){
+            console.log("Login success");
+          });
         }
         $scope.getShows = function(){
 

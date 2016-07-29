@@ -5,4 +5,4 @@ angular.module('search.service',[])
           method: 'GET',
           isArray:true}
       });
-        });
+    });

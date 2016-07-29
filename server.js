@@ -2,6 +2,11 @@
 
 
 var express = require('express');
+var mongoose=require('mongoose');
+require('./db/Users');
+
+
+mongoose.connect('mongodb://localhost/movies');
 var app = express();
 
 
