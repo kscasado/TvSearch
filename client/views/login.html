@@ -1,22 +1,42 @@
 <div class=well>
-<div class ="page-header">
-  <h1> Movie Tracker </h1>
-</div>
-  <form ng-submit="login()">
-    <h3>Log In </h3>
-    <div class="form-group">
-      <input type="text"
-      class="form-control"
-      placeholder="Username"
-      ng-mode="user.username"></input>
+  <ul class="nav nav-tabs">
+      <li class="active"><a href="#login-tab" data-toggle="tab">Login <i class="fa"></i></a></li>
+      <li><a href="#register-tab" data-toggle="tab">Register <i class="fa"></i></a></li>
+  </ul>
+
+  <form   class="form-horizontal">
+      <div class="tab-content">
+          <div class="tab-pane active" id="login-tab">
+            <div class="form-group">
+              <input type="text"
+              class="form-control"
+              placeholder="Username"
+              ng-model="user.username"></input>
+            </div>
+            <div class="form-group">
+              <input type="password"
+              class="form-control"
+              placeholder="Password"
+              ng-model="user.password"></input>
+            </div>
+
+            <button ng-click="logIn()" class="btn btn-primary">Log In</button>
+          </div>
+          <div class="tab-pane" id="register-tab">
+            <div class="form-group">
+              <input type="text"
+              class="form-control"
+              placeholder="Username"
+              ng-model="user.username"></input>
+              </div>
+              <div class="form-group">
+              <input type="password"
+              class="form-control"
+              placeholder="Password"
+              ng-model="user.password"></input>
+              </div>
+              <button ngClick=register() class="btn btn-primary">Register</button>
+      </div>
     </div>
-    <div class="form-group">
-      <input type="password"
-      class="form-control"
-  placeholder="Password"
-  ng-model="user.password"></input>
-  </div>
-  <button type="submit" name="login" class="btn btn-primary">Log In</button>
-  <button type="submit" name="register" class="btn btn-primary">Register</button>
-</form>
+  </form>
 </div>

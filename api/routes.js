@@ -1,10 +1,12 @@
 var superagent = require('superagent');
 var config = require('../config.json');
 var mongoose=require('mongoose');
-var passport=require('pasport');
+var passport=require('passport');
+var jwt = require('express-jwt');
+
 var User=mongoose.model('User');
 module.exports = function(app){
-
+var auth = jwt({secret:'SECRET',userProperty:'payload'});
     app.get('/api/:tvshow',function(req,res){
 
 
@@ -42,7 +44,8 @@ module.exports = function(app){
 
 
     });
-    app.post('/api/register'),function(req,res,next){
+    app.post('/api/register',function(req,res,next){
+      console.log(req.body);
       if(!req.body.username || !req.body.password){
         return res.status(400).json({message: 'Not all fields filled'});
       }
@@ -56,6 +59,7 @@ module.exports = function(app){
     });
 
     app.post('/api/login', function(req,res,next){
+      console.log(req.body);
       if(!req.body.username || !req.body.password){
         return res.status(400).json({message: 'Please fill out all fields'});
       }

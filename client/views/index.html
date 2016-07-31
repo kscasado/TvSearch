@@ -29,9 +29,9 @@
 			</div>
 			<ul class ="nav navbar-nav pull-right">
 
-				<li ng-show="isLoggedIn()"><a> {{currentUser()}}</a></li>
-				<li ng-hide="isLoggedIn()"><a href="/login">Log In </a></li>
-				<li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+				<li ng-show="isLoggedIn"><a> {{currentUser()}}</a></li>
+				<li ng-hide="isLoggedIn"><a href="/login">Log In </a></li>
+				<li ng-hide="isLoggedIn"><a href="/#/register">Register</a></li>
 			</ul>
 		</nav>
 
