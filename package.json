@@ -10,7 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.3",
+    "jsonwebtoken": "^7.1.7",
     "mongoose": "^4.5.7",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "superagent": "^1.4.0"
   }
 }
