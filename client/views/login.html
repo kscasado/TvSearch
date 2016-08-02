@@ -1,12 +1,11 @@
-<div class=well>
-  <ul class="nav nav-tabs">
-      <li class="active"><a href="#login-tab" data-toggle="tab">Login <i class="fa"></i></a></li>
-      <li><a href="#register-tab" data-toggle="tab">Register <i class="fa"></i></a></li>
-  </ul>
+<div ng-cloak>
+<md-content>
+  <md-tabs md-border-bottom>
+    <md-tab label="Login">
+<md-content>
+  <form  ng-submit="logIn()" class="form-horizontal">
 
-  <form   class="form-horizontal">
-      <div class="tab-content">
-          <div class="tab-pane active" id="login-tab">
+
             <div class="form-group">
               <input type="text"
               class="form-control"
@@ -20,9 +19,15 @@
               ng-model="user.password"></input>
             </div>
 
-            <button ng-click="logIn()" class="btn btn-primary">Log In</button>
-          </div>
-          <div class="tab-pane" id="register-tab">
+            <button type="submit" class="btn btn-primary">Log In</button>
+          </form>
+
+</md-content>
+</md-tab>
+  <md-tab label="Register">
+  <md-content>
+
+              <form ng-submit="register()" class="form-horizontal">
             <div class="form-group">
               <input type="text"
               class="form-control"
@@ -35,8 +40,11 @@
               placeholder="Password"
               ng-model="user.password"></input>
               </div>
-              <button ngClick=register() class="btn btn-primary">Register</button>
-      </div>
-    </div>
-  </form>
+              <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+
+  </md-content>
+</md-tab>
+</md-tabs>
+
 </div>

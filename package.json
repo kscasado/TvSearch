@@ -9,6 +9,7 @@
   "author": "Kevin Casado",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.13.3",
     "express-jwt": "^3.4.0",
     "jsonwebtoken": "^7.1.7",

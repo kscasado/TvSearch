@@ -13,7 +13,7 @@ angular.module('login.controller',[])
     if(token){
       var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-      return payload.exp>Date.now()/1000;
+      return (payload.exp < Date.now() / 1000);
 
     }
     else{
@@ -45,27 +45,22 @@ angular.module('login.controller',[])
       .controller('LoginController',['$scope', '$sce','$location', 'auth' ,
       function($scope, $sce,$location,auth){
         $scope.sce = $sce;
-        $scope.showList=null;
-        $scope.isLoggedIn=false;
-        $scope.user={};
         $scope.isLoggedIn = auth.isLoggedIn;
-        $scope.currentUser=auth.currentUser;
-
-
+        $scope.currentUser = auth.currentUser;
+        $scope.logOut = auth.logOut;
+        console.log(auth.currentUser() + ':'+ auth.isLoggedIn());
         $scope.register=function(){
-          console.log('register got called')
           auth.register($scope.user).error(function(error){
             $scope.error=error;
           }).then(function(){
             $location.path('/')
-            console.log('register success');
           })
         };
         $scope.logIn = function(){
       auth.logIn($scope.user).error(function(error){
         $scope.error = error;
       }).then(function(){
-        $location.go('home');
+        $location.path('/');
       });
     };
 

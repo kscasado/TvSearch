@@ -8,9 +8,13 @@ require('./config/passport');
 
 
 mongoose.connect('mongodb://localhost/movies');
+var bodyParser= require('body-parser');
+
 var app = express();
 
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('./client'));
 app.use(passport.initialize());
 require('./api/routes')(app)
