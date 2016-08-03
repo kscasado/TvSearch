@@ -1,7 +1,8 @@
 angular.module('show.controller',[])
-      .controller('ShowController',function($scope, ShowService,$sce,show){
+      .controller('ShowController',function($scope, ShowService,$sce,show,auth){
         $scope.sce = $sce;
         $scope.show=show;
+        $scope.isLoggedIn = auth.isLoggedIn;
         $scope.getShowDetails = function(){
 
 
@@ -11,6 +12,9 @@ angular.module('show.controller',[])
 
 
         $scope.hello='Hello World';
+      }
+      $scope.addShow=function(show){
+
       }
       $scope.checkImage = function(cast){
         if(cast.character.image===null){

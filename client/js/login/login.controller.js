@@ -48,7 +48,7 @@ angular.module('login.controller',[])
         $scope.isLoggedIn = auth.isLoggedIn;
         $scope.currentUser = auth.currentUser;
         $scope.logOut = auth.logOut;
-        console.log(auth.currentUser() + ':'+ auth.isLoggedIn());
+        //console.log(auth.currentUser() + ':'+ auth.isLoggedIn());
         $scope.register=function(){
           auth.register($scope.user).error(function(error){
             $scope.error=error;
