@@ -9,6 +9,10 @@ angular.module('search.controller',['ngSanitize'])
           $scope.showList=shows;
 
         });
+      };
+      $scope.addShow=function(show){
+        console.log(show);
+      };
         $scope.getShowDetails = function(showID){
 
           $location.path('/show/'+showID);
@@ -16,5 +20,5 @@ angular.module('search.controller',['ngSanitize'])
         };
 
         $scope.hello='Hello World';
-      }
+
     });

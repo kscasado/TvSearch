@@ -23,17 +23,21 @@
     </div>
   </div>
         <div class="row"ng-repeat="show in showList" ng-model="show" >
-          <div class="col-xs-12">
+          <div class="container-fluid">
           <div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title">
                             {{show.show.name}}
 
-                        </div>
-                        <button type="submit"class="pull-right"
-                          ng-click=addShow(show.show)>Seen</button>
-					</div>
+
+                        <button type="submit"class="btn btn-md btn-warning pull-right"
+                          ng-click=addShow(show.show)>
+                          Add Show</button>
+
+</div>
+          </div>
 					<div class="panel-body">
+
 
 
               <img class ="class-xs-5 pull-left" src={{show.show.image.medium}} >

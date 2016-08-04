@@ -14,7 +14,7 @@ angular.module('show.controller',[])
         $scope.hello='Hello World';
       }
       $scope.addShow=function(show){
-
+        console.log(show);
       }
       $scope.checkImage = function(cast){
         if(cast.character.image===null){
