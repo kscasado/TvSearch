@@ -1,5 +1,5 @@
 angular.module('search.controller',['ngSanitize'])
-      .controller('SearchController',function($scope, SearchService,$sce,$location){
+      .controller('SearchController',function($scope, UserService,SearchService,$sce,$location){
         $scope.sce = $sce;
         $scope.showList=null;
         $scope.getShows = function(){
@@ -12,6 +12,10 @@ angular.module('search.controller',['ngSanitize'])
       };
       $scope.addShow=function(show){
         console.log(show);
+        UserService.addShow(show.id).save(function(){
+          
+        });
+
       };
         $scope.getShowDetails = function(showID){
 

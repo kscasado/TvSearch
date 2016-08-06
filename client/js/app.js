@@ -1,5 +1,5 @@
 angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'search.controller', 'search.service',
-'login.controller', 'show.controller', 'show.service'])
+'login.controller', 'show.controller', 'show.service','user.service'])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
 

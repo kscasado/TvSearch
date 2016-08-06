@@ -74,9 +74,11 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
       })(req,res,next)
     });
 
-
-    app.post('api/:user/addShow',function(req,res,next){
-      var id = req.showId;
+    app.post('/api/:user',function(req,res,next){
+      console.log('in the api/user');
+    });
+    app.post('/api/:user/:showID',function(req,res,next){
+      console.log('in the add show')
 
     });
 
