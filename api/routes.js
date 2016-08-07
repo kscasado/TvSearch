@@ -7,6 +7,17 @@ var jwt = require('express-jwt');
 var User=mongoose.model('User');
 module.exports = function(app){
 var auth = jwt({secret:'SECRET',userProperty:'payload'});
+// app.param('user', function(req, res, next, id) {
+// var query = User.findById(id);
+//
+// query.exec(function (err, post){
+// if (err) { return next(err); }
+// if (!user) { return next(new Error('can\'t find post')); }
+// console.log(user);
+// req.post = post;
+// return next();
+// });
+// });
     app.get('/api/:tvshow',function(req,res){
 
 
@@ -78,7 +89,18 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
       console.log('in the api/user');
     });
     app.post('/api/:user/:showID',function(req,res,next){
-      console.log('in the add show')
+      console.log('in the adShow');
+      var  query= User.findOne({user:req.params.user});
+      console.log('user:'+query._id);
+      User.findByIdAndUpdate(
+        User.find(),
+        {$push: {"shows":req.params.showID}},
+        {safe: true, upsert: true, new : true},
+        function(err, model) {
+            console.log('user');
+            console.log(err);
+        }
+    );
 
     });
 
