@@ -3,25 +3,15 @@ var config = require('../config.json');
 var mongoose=require('mongoose');
 var passport=require('passport');
 var jwt = require('express-jwt');
-
+//var routeServices = require('routes_services');
 var User=mongoose.model('User');
 module.exports = function(app){
 var auth = jwt({secret:'SECRET',userProperty:'payload'});
-// app.param('user', function(req, res, next, id) {
-// var query = User.findById(id);
-//
-// query.exec(function (err, post){
-// if (err) { return next(err); }
-// if (!user) { return next(new Error('can\'t find post')); }
-// console.log(user);
-// req.post = post;
-// return next();
-// });
-// });
-    app.get('/api/:tvshow',function(req,res){
-
-
-          superagent
+/*
+  Used to run a tvmze search call given a string
+*/
+  app.get('/api/:tvshow',function(req,res){
+        superagent
               .get('http://api.tvmaze.com/search/shows?q='+req.params.tvshow)
               .query({json:true})
               .end(function (err,response){
@@ -36,10 +26,11 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
 
               });
     });
+    /*
+      uses tvmaze api to get shows by their showid
+
+    */
     app.get('/api/shows/:showID',function(req,res){
-
-
-      //console.log('http://api.tvmaze.com/shows/'+req.params.showID+'\?embed=cast');
       superagent
         .get('http://api.tvmaze.com/shows/'+req.params.showID+'\?embed=cast')
         .query({json:true})
@@ -68,7 +59,10 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
         return res.json({token: user.generateJWT()})
       });
     });
+    /*
+    Used to login
 
+    */
     app.post('/api/login', function(req,res,next){
       console.log(req.body);
       if(!req.body.username || !req.body.password){
@@ -88,13 +82,16 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     app.post('/api/:user',function(req,res,next){
       console.log('in the api/user');
     });
+    /*
+      Used to add a show to the Users list
+
+
+
+    */
     app.post('/api/:user/:showID',function(req,res,next){
-      console.log('in the adShow');
-      var user;
-      console.log(req.params.user);
       User.findOne({username:req.params.user},function(err,user){
         if(err){
-          console.log(err);
+          console.log('Unable to add show:'+err);
         }
         else{
           User.findByIdAndUpdate(
@@ -102,26 +99,39 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
             {$addToSet: {"shows":req.params.showID}},
             {safe: true, upsert: true, new : true},
             function(err, model) {
-                console.log('user');
-                console.log(err);
+                if(err){
+                  console.log('unable to update user:'+err);
+                }
+
             }
         );
         }
-
-
       });
-
-      User.findByIdAndUpdate(
-        User.find(),
-        {$push: {"shows":req.params.showID}},
-        {safe: true, upsert: true, new : true},
-        function(err, model) {
-            console.log('user');
-            console.log(err);
-        }
-    );
-
     });
+
+    /*
+      return the shows that the user has on their shows list
+
+    */
+    app.get('/api/:user/shows',function(req,res,next){
+      User.findOne({username:req.params.user},function(err,user){
+        if(err){
+          console.log('Unable to add show:'+err);
+        }
+        else{
+          var showList=[];
+          for(var show in user.shows){
+
+          }
+
+
+
+        }
+      });
+    });
+
+
+
 
 
 
