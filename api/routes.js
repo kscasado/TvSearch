@@ -90,8 +90,27 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     });
     app.post('/api/:user/:showID',function(req,res,next){
       console.log('in the adShow');
-      var  query= User.findOne({user:req.params.user});
-      console.log('user:'+query._id);
+      var user;
+      console.log(req.params.user);
+      User.findOne({username:req.params.user},function(err,user){
+        if(err){
+          console.log(err);
+        }
+        else{
+          User.findByIdAndUpdate(
+            user._id,
+            {$addToSet: {"shows":req.params.showID}},
+            {safe: true, upsert: true, new : true},
+            function(err, model) {
+                console.log('user');
+                console.log(err);
+            }
+        );
+        }
+
+
+      });
+
       User.findByIdAndUpdate(
         User.find(),
         {$push: {"shows":req.params.showID}},
