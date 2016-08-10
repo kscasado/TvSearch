@@ -112,14 +112,12 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     */
     app.get('/api/:user/shows',function(req,res,next){
       User.findOne({username:req.params.user},function(err,user){
-
         if(err){
           console.log('Unable to add show:'+err);
         }
         else{
           var showList=new Array();
-
-            for(var i = 0; i<user.shows.length;i++){
+          for(var i = 0; i<user.shows.length;i++){
               superagent
                 .get('http://api.tvmaze.com/shows/'+user.shows[i])
                 .query({json:true})
@@ -135,16 +133,10 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
                       res.send(showList);
                     }
                     }
-
-
-
-                });
+                  });
 
             }
-
-
-
-        }
+          }
       });
     });
 

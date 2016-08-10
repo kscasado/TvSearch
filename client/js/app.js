@@ -25,8 +25,9 @@ angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'sea
           templateUrl:'views/user.html',
           controller:'UserController',
           resolve:{
-            showList:['UserShowsService','$route',function(UserShowService,$route){
-              return ShowService.get({user: $route.current.params.user},function(){
+            showList:['UserService','$route',
+            'auth',function(UserService,$route,auth){
+              return UserService.getUserShows(),function(){
 
               });
             }]
