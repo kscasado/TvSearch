@@ -15,8 +15,8 @@ angular.module('user.service',[])
           o.getUserShows=function(){
             return $resource('/api/:user/shows',{user:auth.currentUser()},{
               get:{
-                method:'GET'
-                isArray:true;
+                method:'GET',
+                isArray:true
               }
             });
           };

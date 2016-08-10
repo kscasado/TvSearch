@@ -27,6 +27,7 @@
 		<script src="js/login/login.controller.js"></script>
 		<script src="js/login/login.service.js"></script>
 		<script src="js/user/user.service.js"></script>
+		<script src="js/user/user.controller.js"></script>
 	</head>
 	<body ng-app="app">
 		<nav class="navbar navbar-default" ng-controller="LoginController">
@@ -35,7 +36,7 @@
 			</div>
 			<ul class ="nav navbar-nav pull-right">
 
-				<li ng-show="isLoggedIn()"><a> {{ currentUser() }}</a></li>
+				<li ng-show="isLoggedIn()"><a href="/{{currentUser()}}/"> {{ currentUser() }}</a></li>
 				<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out </a></li>
 				<li ng-hide="isLoggedIn()"><a href="/login">Log In </a></li>
 				<li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>

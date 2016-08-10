@@ -1,5 +1,5 @@
 angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'search.controller', 'search.service',
-'login.controller', 'show.controller', 'show.service','user.service'])
+'login.controller', 'show.controller', 'show.service','user.service','user.controller'])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
 
@@ -13,7 +13,8 @@ angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'sea
           controller:'ShowController',
           resolve:{
             show: ['ShowService','$route', function(ShowService,$route){
-              return ShowService.get({showid: $route.current.params.showid},function(){
+              return ShowService.get({showid: $route.current.params.showid}
+                ,function(){
 
               });
             }]
@@ -27,7 +28,7 @@ angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'sea
           resolve:{
             showList:['UserService','$route',
             'auth',function(UserService,$route,auth){
-              return UserService.getUserShows(),function(){
+              return UserService.getUserShows().get(function(){
 
               });
             }]
