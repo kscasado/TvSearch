@@ -13,16 +13,23 @@ angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'sea
           controller:'ShowController',
           resolve:{
             show: ['ShowService','$route', function(ShowService,$route){
-
-              //console.log('This one');
-              //console.log(ShowService.get({showid:1}));
-              //console.log(//$routeParams);
               return ShowService.get({showid: $route.current.params.showid},function(){
 
               });
             }]
 
 
+          }
+        })
+        .when('/:user/',{
+          templateUrl:'views/user.html',
+          controller:'UserController',
+          resolve:{
+            showList:['UserShowsService','$route',function(UserShowService,$route){
+              return ShowService.get({user: $route.current.params.user},function(){
+
+              });
+            }]
           }
         })
         .when('/login',{

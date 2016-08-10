@@ -3,7 +3,7 @@ var config = require('../config.json');
 var mongoose=require('mongoose');
 var passport=require('passport');
 var jwt = require('express-jwt');
-//var routeServices = require('routes_services');
+var routeServices = require('./routesServices');
 var User=mongoose.model('User');
 module.exports = function(app){
 var auth = jwt({secret:'SECRET',userProperty:'payload'});
@@ -11,6 +11,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
   Used to run a tvmze search call given a string
 */
   app.get('/api/:tvshow',function(req,res){
+
         superagent
               .get('http://api.tvmaze.com/search/shows?q='+req.params.tvshow)
               .query({json:true})
@@ -19,6 +20,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
                   return res.send(err);
                 }
                 else{
+
                   res.json(response.body);
 
 
@@ -28,7 +30,6 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     });
     /*
       uses tvmaze api to get shows by their showid
-
     */
     app.get('/api/shows/:showID',function(req,res){
       superagent
@@ -39,7 +40,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
             return res.send(err);
           }
           else{
-            console.log(response.body);
+
             res.json(response.body);
           }
         });
@@ -47,7 +48,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
 
     });
     app.post('/api/register',function(req,res,next){
-      console.log(req.body);
+
       if(!req.body.username || !req.body.password){
         return res.status(400).json({message: 'Not all fields filled'});
       }
@@ -61,10 +62,9 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     });
     /*
     Used to login
-
     */
     app.post('/api/login', function(req,res,next){
-      console.log(req.body);
+
       if(!req.body.username || !req.body.password){
         return res.status(400).json({message: 'Please fill out all fields'});
       }
@@ -84,11 +84,8 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     });
     /*
       Used to add a show to the Users list
-
-
-
     */
-    app.post('/api/:user/:showID',function(req,res,next){
+    app.post('/api/:user/:showID',function(req,res){
       User.findOne({username:req.params.user},function(err,user){
         if(err){
           console.log('Unable to add show:'+err);
@@ -102,6 +99,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
                 if(err){
                   console.log('unable to update user:'+err);
                 }
+                res.status(200).json(model);
 
             }
         );
@@ -111,18 +109,38 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
 
     /*
       return the shows that the user has on their shows list
-
     */
     app.get('/api/:user/shows',function(req,res,next){
       User.findOne({username:req.params.user},function(err,user){
+
         if(err){
           console.log('Unable to add show:'+err);
         }
         else{
-          var showList=[];
-          for(var show in user.shows){
+          var showList=new Array();
 
-          }
+            for(var i = 0; i<user.shows.length;i++){
+              superagent
+                .get('http://api.tvmaze.com/shows/'+user.shows[i])
+                .query({json:true})
+                .end(function(err,response){
+                  if(err){
+                    return res.send(err);
+                  }
+                  else{
+                    showList.push(response.body);
+                    //console.log('showList.length'+showList.length);
+                    if(showList.length==user.shows.length){
+
+                      res.send(showList);
+                    }
+                    }
+
+
+
+                });
+
+            }
 
 
 

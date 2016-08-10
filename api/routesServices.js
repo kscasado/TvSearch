@@ -1,13 +1,13 @@
 var superagent = require('superagent');
 
-var routes_services = function() {
+var routesServices = function(){
     var getShowInfoService= function(showID) {
       superagent
-            .get('http://api.tvmaze.com/search/shows?q='+req.params.tvshow)
+            .get('http://api.tvmaze.com/search/shows?q='+showID)
             .query({json:true})
             .end(function (err,response){
               if(err){
-                return res.send(err);
+                return response.send(err);
               }
               else{
                 return response.body;
@@ -26,4 +26,4 @@ var routes_services = function() {
     }
 }();
 
-module.exports = routes_services;
+module.exports = routesServices;

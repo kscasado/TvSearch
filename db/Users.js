@@ -2,8 +2,7 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var UserSchema = new mongoose.Schema({
-
-  username:{type:String,lowercase:true,sparse:true},
+  username:{type:String,lowercase:true,unique:true},
   hash:String,
   salt:String,
   shows:[Number]
@@ -18,6 +17,7 @@ UserSchema.methods.validPassword=function(password){
   var hash=crypto.pbkdf2Sync(password,this.salt,1000,64).toString('hex');
   return this.hash===hash;
 }
+
 UserSchema.methods.generateJWT = function(){
   var today = new Date();
   var exp = new Date(today.getDate()+60);
