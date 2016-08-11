@@ -1,5 +1,12 @@
 angular.module('user.controller',[])
-      .controller('UserController',function($scope,$sce,showList,auth){
-        $scope.showList = showList;
+      .controller('UserController',function($route,$scope,$sce,userShowList,
+                  UserService,auth){
+        $scope.showList = userShowList;
         console.log($scope.showList);
+
+        $scope.removeShow=function(showID){
+          var check = UserService.removeShow(showID).save(function(){
+            $route.reload();
+          });
+        }
     });

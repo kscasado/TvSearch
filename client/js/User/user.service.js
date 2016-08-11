@@ -3,7 +3,7 @@ angular.module('user.service',[])
           var o ={};
 
           o.addShow=function(ShowID){
-              return $resource('/api/:user/:showID',{user:auth.currentUser()
+              return $resource('/api/:user/add/:showID',{user:auth.currentUser()
                     ,showID:ShowID},{
               save: {
                 method: 'POST'
@@ -20,6 +20,15 @@ angular.module('user.service',[])
               }
             });
           };
+          o.removeShow=function(ShowID){
+            return $resource('/api/:user/remove/:showID',{user:auth.currentUser()
+                  ,showID:ShowID},{
+            save: {
+              method: 'POST'
+            }
+
+          });
+        }
 
       return o;
     });

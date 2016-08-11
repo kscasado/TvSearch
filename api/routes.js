@@ -127,7 +127,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
                   }
                   else{
                     showList.push(response.body);
-                    //console.log('showList.length'+showList.length);
+
                     if(showList.length==user.shows.length){
 
                       res.send(showList);
@@ -140,7 +140,36 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
       });
     });
 
+    /*
+      removes a show from the users showlist
 
+    */
+    app.post('/api/:user/remove/:showID',function(req,res){
+      if(req.params.user){
+      User.findOne({username:req.params.user},function(err,user){
+        if(err){
+          console.log('Unable to add show:'+err);
+        }
+        else{
+          User.findByIdAndUpdate(
+            user._id,
+            {$pull: {"shows":req.params.showID}},
+            {safe: true, upsert: true, new : true},
+            function(err, model) {
+                if(err){
+                  console.log('unable to update user:'+err);
+                }
+                res.status(200).json(model);
+
+            }
+        );
+        }
+      });
+    }
+    else{
+      res.status(401);
+    }
+    });
 
 
 

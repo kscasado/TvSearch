@@ -11,8 +11,8 @@ angular.module('search.controller',['ngSanitize'])
         });
       };
       $scope.addShow=function(show){
-        //console.log(show);
-        UserService.addShow(show.id).save(function(){
+
+        var check =UserService.addShow(show.id).save(function(){
 
         });
 

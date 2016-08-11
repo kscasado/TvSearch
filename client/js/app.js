@@ -22,11 +22,11 @@ angular.module('app', ['ngMaterial','ui.bootstrap','ngRoute', 'ngResource', 'sea
 
           }
         })
-        .when('/:user/',{
+        .when('/Users/:user/',{
           templateUrl:'views/user.html',
           controller:'UserController',
           resolve:{
-            showList:['UserService','$route',
+            userShowList:['UserService','$route',
             'auth',function(UserService,$route,auth){
               return UserService.getUserShows().get(function(){
 
