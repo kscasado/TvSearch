@@ -6,8 +6,8 @@ var mongoose=require('mongoose');
 require('./db/Users');
 require('./config/passport');
 
-
-mongoose.connect('mongodb://localhost/movies');
+mongoose.connect('mongodb://heroku_nk6gw71c:84l2qdkd2n8l08soldehgj1a78@ds153845.mlab.com:53845/heroku_nk6gw71c');
+//mongoose.connect('mongodb://localhost/kevinsshowtracker');
 var bodyParser= require('body-parser');
 
 var app = express();
