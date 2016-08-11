@@ -12,7 +12,7 @@ var bodyParser= require('body-parser');
 
 var app = express();
 
-var port = Number(process.env.PORT || 8080);
+var PORT = Number(process.env.PORT || 8080);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('./client'));
@@ -23,5 +23,5 @@ app.get('*', function(req,res){
       res.sendFile('/client/views/index.html',{root:__dirname});
 });
 app.listen(PORT, function(){
-    console.log('Server is running on'+PORT);
+    console.log('Server is running on '+PORT);
 });
