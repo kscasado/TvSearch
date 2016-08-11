@@ -19,7 +19,7 @@ app.use(express.static('./client'));
 app.use(passport.initialize());
 require('./api/routes')(app)
 
-app.get('/', function(req,res){
+app.get('*', function(req,res){
       res.sendFile('/client/views/index.html',{root:__dirname});
 });
 app.listen(PORT, function(){
