@@ -85,7 +85,7 @@ var auth = jwt({secret:'SECRET',userProperty:'payload'});
     /*
       Used to add a show to the Users list
     */
-    app.post('/api/:user/:showID',function(req,res){
+    app.post('/api/:user/add/:showID',function(req,res){
       User.findOne({username:req.params.user},function(err,user){
         if(err){
           console.log('Unable to add show:'+err);

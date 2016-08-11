@@ -32,14 +32,14 @@
 	<body ng-app="app">
 		<nav class="navbar navbar-default" ng-controller="LoginController">
 			<div class="navbar-header">
-				<h4 class="navbar-brand" href="#">TvSearch App</a>
+				<h4 class="navbar-brand"> <a href="/home">Show Tracker App</a></h4>
 			</div>
 			<ul class ="nav navbar-nav pull-right">
 
 				<li ng-show="isLoggedIn()"><a href="/Users/{{currentUser()}}/"> {{ currentUser() }}</a></li>
 				<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out </a></li>
 				<li ng-hide="isLoggedIn()"><a href="/login">Log In </a></li>
-				<li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+				<li ng-hide="isLoggedIn()"><a href="/login">Register</a></li>
 			</ul>
 		</nav>
 
